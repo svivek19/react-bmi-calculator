@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import styled from 'styled-components';
+import { TextField, Button } from '@mui/material';
 
-function App() {
-  const [count, setCount] = useState(0)
+const MainContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+  text-align:center;
+`;
 
+const FormContainer = styled.div`
+  background-color: transparent;
+  backdrop-filter: blur(10px); 
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  font-weight:600;
+`;
+
+const FormItem = styled.div`
+  margin-bottom: 16px;
+`;
+
+
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <MainContainer>
+      <FormContainer>
+        <h1>BMI Calculator</h1>
+        <form>
+          <FormItem>
+            <TextField
+              id="height"
+              label="Height (cm)"
+              type="text"
+              variant="outlined"
+              fullWidth
+            />
+          </FormItem>
+          <FormItem>
+            <TextField
+              id="weight"
+              label="Weight (kg)"
+              type="text"
+              variant="outlined"
+              fullWidth
+            />
+          </FormItem>
+          <FormItem>
+            <Button variant="contained" color="primary" fullWidth>
+              Calculate BMI
+            </Button>
+          </FormItem>
+          <div>
+            <p>Your BMI is: 28.3</p>
+            <p>Status: Overweight</p>
+          </div>
+        </form>
+      </FormContainer>
+    </MainContainer>
+  );
+};
 
-export default App
+
+export default App;
