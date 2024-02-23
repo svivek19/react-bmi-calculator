@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
-import Style from './style/Style'
+import Style from './style/Style';
 
 const App = () => {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [bmi, setBmi] = useState(null);
   const [bmiStatus, setBmiStatus] = useState('');
-  const [err, setErr] = useState('')
+  const [err, setErr] = useState('');
 
   const handleBmi = () => {
 
