@@ -24,6 +24,9 @@ const FormContainer = styled.div`
 
 const FormItem = styled.div`
   margin-bottom: 16px;
+  display:flex;
+  justify-content:space-between;
+  gap:5px
 `;
 
 const TextBMI = styled.p`
@@ -50,6 +53,7 @@ const Result = styled.div`
 
 const Error = styled.p`
   color:darkred;
+  font-size:16px;
 `;
 
 const App = () => {
@@ -57,6 +61,7 @@ const App = () => {
   const [weight, setWeight] = useState('');
   const [bmi, setBmi] = useState(null);
   const [bmiStatus, setBmiStatus] = useState('');
+  const [err, setErr] = useState('')
 
   const handleBmi = () => {
     if (height && weight) {
@@ -79,6 +84,12 @@ const App = () => {
     }
   };
 
+  const handleClear = () => {
+    setHeight('');
+    setWeight('');
+    setBmi(null);
+  }
+
   const handleChangeHeight = (e) => {
     setHeight(e.target.value);
   };
@@ -91,7 +102,7 @@ const App = () => {
     <MainContainer>
       <FormContainer>
         <Heading>BMI Calculator</Heading>
-        <Error>Please enter valid numeric values for height and weight.</Error>
+        {err && <Error>Please enter valid numeric values for height and weight.</Error>}
         <form>
           <FormItem>
             <TextField
@@ -118,6 +129,9 @@ const App = () => {
           <FormItem>
             <Button variant="contained" color="primary" fullWidth onClick={handleBmi}>
               Calculate BMI
+            </Button>
+            <Button variant="contained" color="inherit" fullWidth onClick={handleClear}>
+              Clear
             </Button>
           </FormItem>
           {bmi !== null && (
