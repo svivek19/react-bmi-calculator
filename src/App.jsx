@@ -64,7 +64,11 @@ const App = () => {
   const [err, setErr] = useState('')
 
   const handleBmi = () => {
-    if (height && weight) {
+
+    const isValidHeight = /^\d+$/.test(height);
+    const isValidWeight = /^\d+$/.test(weight);
+
+    if (isValidHeight && isValidWeight) {
       const heightInMeter = height / 100;
       const bmiValue = weight / (heightInMeter * heightInMeter);
       setBmi(bmiValue.toFixed(2));
@@ -78,9 +82,12 @@ const App = () => {
         setBmiStatus('Obese');
       }
 
+      setErr("")
+
     } else {
       setBmi(null);
       setBmiStatus("");
+      setErr("Please enter valid numeric values for height and weight.")
     }
   };
 
@@ -88,6 +95,8 @@ const App = () => {
     setHeight('');
     setWeight('');
     setBmi(null);
+    setBmiStatus('');
+    setErr("");
   }
 
   const handleChangeHeight = (e) => {
@@ -102,7 +111,7 @@ const App = () => {
     <MainContainer>
       <FormContainer>
         <Heading>BMI Calculator</Heading>
-        {err && <Error>Please enter valid numeric values for height and weight.</Error>}
+        {err && <Error>{err}</Error>}
         <form>
           <FormItem>
             <TextField
