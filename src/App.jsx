@@ -26,12 +26,33 @@ const FormItem = styled.div`
   margin-bottom: 16px;
 `;
 
+const TextBMI = styled.p`
+  font-weight:bold;
+  font-size:20px;
+  color:blue;
+`;
+
+const TextStatus = styled.p`
+  font-weight:500;
+  font-size:16px;
+  color:linear-gradient(135deg, #FFDD95, #822E3D, #F5812C);
+`;
+
+const Heading = styled.h1`
+  color:linear-gradient(135deg, #FFDD95, #822E3D, #F5812C);
+  margin-bottom:30px;
+`;
+
+const Result = styled.div`
+  border: 2px solid #852E3E;
+  border-radius:10px;
+`;
 
 const App = () => {
   return (
     <MainContainer>
       <FormContainer>
-        <h1>BMI Calculator</h1>
+        <Heading>BMI Calculator</Heading>
         <form>
           <FormItem>
             <TextField
@@ -56,10 +77,10 @@ const App = () => {
               Calculate BMI
             </Button>
           </FormItem>
-          <div>
-            <p>Your BMI is: 28.3</p>
-            <p>Status: Overweight</p>
-          </div>
+          <Result>
+            <TextBMI>Your BMI is: 28.3</TextBMI>
+            <TextStatus>Status: Overweight</TextStatus>
+          </Result>
         </form>
       </FormContainer>
     </MainContainer>
