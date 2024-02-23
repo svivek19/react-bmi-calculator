@@ -1,60 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { TextField, Button } from '@mui/material';
-
-const MainContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-`;
-
-const FormContainer = styled.div`
-  background-color: transparent;
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  font-weight: 600;
-`;
-
-const FormItem = styled.div`
-  margin-bottom: 16px;
-  display:flex;
-  justify-content:space-between;
-  gap:5px
-`;
-
-const TextBMI = styled.p`
-  font-weight: bold;
-  font-size: 20px;
-  color: blue;
-`;
-
-const TextStatus = styled.p`
-  font-weight: 500;
-  font-size: 16px;
-  color: linear-gradient(135deg, #ffdd95, #822e3d, #f5812c);
-`;
-
-const Heading = styled.h1`
-  color: linear-gradient(135deg, #ffdd95, #822e3d, #f5812c);
-  margin-bottom: 30px;
-`;
-
-const Result = styled.div`
-  border: 2px solid #852e3e;
-  border-radius: 10px;
-`;
-
-const Error = styled.p`
-  color:darkred;
-  font-size:16px;
-`;
+import Style from './style/Style'
 
 const App = () => {
   const [height, setHeight] = useState('');
@@ -108,12 +54,12 @@ const App = () => {
   };
 
   return (
-    <MainContainer>
-      <FormContainer>
-        <Heading>BMI Calculator</Heading>
-        {err && <Error>{err}</Error>}
+    <Style.MainContainer>
+      <Style.FormContainer>
+        <Style.Heading>BMI Calculator</Style.Heading>
+        {err && <Style.Error>{err}</Style.Error>}
         <form>
-          <FormItem>
+          <Style.FormItem>
             <TextField
               id="height"
               label="Height (cm)"
@@ -123,8 +69,8 @@ const App = () => {
               value={height}
               onChange={handleChangeHeight}
             />
-          </FormItem>
-          <FormItem>
+          </Style.FormItem>
+          <Style.FormItem>
             <TextField
               id="weight"
               label="Weight (kg)"
@@ -134,24 +80,24 @@ const App = () => {
               value={weight}
               onChange={handleChangeWeight}
             />
-          </FormItem>
-          <FormItem>
+          </Style.FormItem>
+          <Style.FormItem>
             <Button variant="contained" color="primary" fullWidth onClick={handleBmi}>
               Calculate BMI
             </Button>
             <Button variant="contained" color="inherit" fullWidth onClick={handleClear}>
               Clear
             </Button>
-          </FormItem>
+          </Style.FormItem>
           {bmi !== null && (
-            <Result>
-              <TextBMI>Your BMI is: {bmi}</TextBMI>
-              <TextStatus>Status: {bmiStatus}</TextStatus>
-            </Result>
+            <Style.Result>
+              <Style.TextBMI>Your BMI is: {bmi}</Style.TextBMI>
+              <Style.TextStatus>Status: {bmiStatus}</Style.TextStatus>
+            </Style.Result>
           )}
         </form>
-      </FormContainer>
-    </MainContainer>
+      </Style.FormContainer>
+    </Style.MainContainer>
   );
 };
 
